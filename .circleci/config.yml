@@ -28,10 +28,8 @@ jobs:
           command: mvn test
 
       - run:
-          command: curl -Os https://uploader.codecov.io/latest/linux/codecov; chmod +x codecov
-
-      - run:
-          command: ./codecov -f 'output/surefire-reports/*.xml'
+          name: Code Coverage
+          command: curl -Os https://uploader.codecov.io/latest/linux/codecov; chmod +x codecov; ./codecov
 
 
 # Invoke jobs via workflows

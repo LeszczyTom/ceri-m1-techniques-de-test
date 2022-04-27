@@ -23,5 +23,13 @@ public class IPokemonFactoryTest {
         Assert.assertEquals(aquali, pokemonFactory.createPokemon(133,2729, 202, 5000, 4));
         // expected bulbizarre
         Assert.assertEquals(bulbizarre, pokemonFactory.createPokemon(0, 613, 64, 4000, 4));
+        // expected 64 hp for bulbizarre
+        Assert.assertEquals(bulbizarre.getHp(), 64);
+        // expected 5000 dust for aquali
+        Assert.assertEquals(aquali.getDust(), 5000);
+        // expected 4 candy for bulbizarre
+        Assert.assertEquals(bulbizarre.getCandy(), 4);
+        //expected 100.0 iv for aquali
+        Assert.assertEquals(aquali.getIv(), 100.0, 0.0);
     }
 }

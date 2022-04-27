@@ -5,20 +5,6 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  badge_job:
-    docker:
-      - image: cimg/openjdk:11.0
-    steps:
-      - id: date
-        run: echo "##[set-output name=data;]$(date)"
-      - name: Time badge
-        uses: RubbaBoy/BYOB@v1.2.1
-        with:
-          NAME: time
-          LABEL: 'Updated at'
-          STATUS: ${{ steps.date.outputs.data }}
-          COLOR: 00EEFF
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
   build-and-test:
     # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
@@ -50,9 +36,6 @@ jobs:
           command: mvn -B -DskipTests checkstyle:checkstyle
 
 
-
-
-
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
@@ -60,4 +43,3 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - badge_job

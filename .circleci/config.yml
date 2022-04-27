@@ -35,14 +35,13 @@ jobs:
           name: Chackstyle
           command: mvn -B -DskipTests checkstyle:checkstyle
 
-      - name: Bring Your Own Badge Github
+      - name: Time badge
           uses: RubbaBoy/BYOB@v1.2.1
           with:
-            NAME: github
-            LABEL: 'GitHub'
-            ICON: 'github'
-            STATUS: 'BYOBTest'
-            COLOR: blue
+            NAME: time
+            LABEL: 'Updated at'
+            STATUS: '000'
+            COLOR: 00EEFF
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 

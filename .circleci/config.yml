@@ -35,10 +35,9 @@ jobs:
           name: Chackstyle
           command: mvn -B -DskipTests checkstyle:checkstyle
 
-      - id: date
-        run: echo "##[set-output name=data;]$(date)"
-      - name: Time badge
-          uses: RubbaBoy/BYOB@v1.2.1
+      - run: echo "##[set-output name=data;]$(date)"
+
+      - uses: RubbaBoy/BYOB@v1.2.1
           with:
             NAME: time
             LABEL: 'Updated at'

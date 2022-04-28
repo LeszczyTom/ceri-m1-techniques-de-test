@@ -31,7 +31,11 @@ public class PokemonMetadata {
      * @param defense Defense level.
      * @param stamina Stamina level.
      */
-    public PokemonMetadata(final int index, final String name, final int attack, final int defense, final int stamina) {
+    public PokemonMetadata(final int index,
+                           final String name,
+                           final int attack,
+                           final int defense,
+                           final int stamina) {
         this.pokemonIndex = index;
         this.pokemonName = name;
         this.pokemonAttack = attack;

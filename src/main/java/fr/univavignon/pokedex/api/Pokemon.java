@@ -1,5 +1,7 @@
 package fr.univavignon.pokedex.api;
 
+import java.util.List;
+
 /**
  * Pokemon POJO.
  *
@@ -22,34 +24,32 @@ public final class Pokemon extends PokemonMetadata {
     /** IV perfection percentage. **/
     private final double pokemonIv;
 
+    /** Index of cp stat. **/
+    private final int cpIndex = 3;
+
+    /** Index of hp stat. **/
+    private final int hpIndex = 4;
+
     /**
      * Default constructor.
      *
+     * @param stats List of stats. (attack, defense, stamina, cp, hp)
      * @param index Pokemon index.
      * @param name Pokemon name.
-     * @param attack Attack level.
-     * @param defense Defense level.
-     * @param stamina Stamina level.
-     * @param cp Pokemon cp.
-     * @param hp Pokemon hp.
-     * @param dust Required dust for upgrading this pokemon.
+     * @param dust Pokemon dust.
      * @param candy Required candy for upgrading this pokemon.
      * @param iv IV perfection percentage.
      */
     public Pokemon(
+            final List<Integer> stats,
             final int index,
             final String name,
-            final int attack,
-            final int defense,
-            final int stamina,
-            final int cp,
-            final int hp,
             final int dust,
             final int candy,
             final double iv) {
-        super(index, name, attack, defense, stamina);
-        this.pokemonCp = cp;
-        this.pokemonHp = hp;
+        super(index, name, stats.get(0), stats.get(1), stats.get(2));
+        this.pokemonCp = stats.get(cpIndex);
+        this.pokemonHp = stats.get(hpIndex);
         this.pokemonDust = dust;
         this.pokemonCandy = candy;
         this.pokemonIv = iv;

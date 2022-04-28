@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,8 +13,8 @@ public class IPokedexTest {
     IPokedex pokedex;
     List<Pokemon> pokemons;
 
-    Pokemon bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56.0);
-    Pokemon aquali = new Pokemon(133, "Aquali", 186, 186, 260, 2729, 202, 5000, 4, 100.0);
+    Pokemon bulbizarre = new Pokemon(new ArrayList<>(Arrays.asList(126, 126, 90, 613, 64)), 0, "Bulbizarre", 4000, 4, 56.0);
+    Pokemon aquali = new Pokemon(new ArrayList<>(Arrays.asList(186, 168, 260, 2729, 202)), 133, "Aquali", 5000, 4, 100.0);
 
     public IPokedexTest() {
         pokedex = Mockito.mock(IPokedex.class);
@@ -27,7 +28,7 @@ public class IPokedexTest {
         Mockito.doReturn(pokemons.size() + 1).when(pokedex).addPokemon(Mockito.any(Pokemon.class));
 
         // expected size + 1
-        Assert.assertEquals(3, pokedex.addPokemon(new Pokemon(0, "", 0, 0, 0,0,0,0, 0, 0.0)));
+        Assert.assertEquals(3, pokedex.addPokemon(new Pokemon(new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0)), 0, "", 0, 0, 0.0)));
     }
 
     @Test

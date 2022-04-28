@@ -36,7 +36,7 @@ jobs:
           command: curl -Os https://uploader.codecov.io/latest/linux/codecov; chmod +x codecov; ./codecov
 
       - run:
-          name: Chackstyle
+          name: Checkstyle
           command: mvn -B -DskipTests checkstyle:checkstyle
 
       - run:
@@ -44,7 +44,7 @@ jobs:
           command: |
             curl -X PATCH -H "Accept: application/vnd.github.v3+json" \
             -u $GIT_NAME:$GIT_TOKEN \
-            -d '{"description": "the description for this gist", "files": {"badge.svg": {"content": "testttt"}}}' \
+            -d '{"description": "the description for this gist", "files": {"badge.svg": {"content": curl https://badgen.net/badge/checkstyle/99%20Errors/red}}}' \
             https://api.github.com/gists/7c4b96672dae6e5b47f99194266ef5a9
 
 

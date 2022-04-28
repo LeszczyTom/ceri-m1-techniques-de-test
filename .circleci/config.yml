@@ -42,11 +42,25 @@ jobs:
       - run:
           name: Change badge
           command: |
-            badge=$(curl https://badgen.net/badge/checkstyle/99%20Errors/red);
-            curl -X PATCH -H "Accept: application/vnd.github.v3+json" \
-            -u $GIT_NAME:$GIT_TOKEN \
-            -d '{"description": "the description for this gist", "files": {"badge.svg": {"content": "'${badge}'" }}}' \
-            https://api.github.com/gists/7c4b96672dae6e5b47f99194266ef5a9
+            curl https://badgen.net/badge/checkstyle/99%20Errors/red -o badge.svg;
+            echo '. as $file
+              | $json
+              | (.files.badge.svg.content= $file + "\n" + .content)$badge' > program.jq;
+            echo '{"description": "Badge checkstyle",
+              "files": {
+              "badge.svg": {
+              "content": ""
+              }
+              }
+              }' > curls.jj;
+              jq -R -s --argfile json curl.json -f program.jq badge.svg
+
+
+#badge=$(curl https://badgen.net/badge/checkstyle/99%20Errors/red);
+#curl -X PATCH -H "Accept: application/vnd.github.v3+json" \
+#-u $GIT_NAME:$GIT_TOKEN \
+#-d '{"description": "the description for this gist", "files": {"badge.svg": {"content": "'${badge}'" }}}' \
+#https://api.github.com/gists/7c4b96672dae6e5b47f99194266ef5a9
 
 
 

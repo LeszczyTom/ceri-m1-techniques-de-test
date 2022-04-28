@@ -42,7 +42,7 @@ jobs:
       - run:
           name: Change badge
           command: |
-            ls -l output
+            cat output/checkstyle-result.xml
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

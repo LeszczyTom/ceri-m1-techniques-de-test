@@ -43,7 +43,12 @@ jobs:
           name: Change badge
           command: |
             errors=$(grep -o "severity=\"error\"" output/checkstyle-result.xml | wc -l);
-            curl https://badgen.net/badge/checkstyle/$errors%20Errors/red -o badge.svg;
+            if [[ $errors -gt 0 ]]
+              then
+                curl https://badgen.net/badge/checkstyle/$errors%20Errors/red -o badge.svg;
+              else
+                curl https://badgen.net/badge/checkstyle/$errors%20Errors/green -o badge.svg;
+            fi;
             echo '. as $file
               | $json
               | (.files."badge.svg".content= $file + "\n" + .content)' > program.jq;

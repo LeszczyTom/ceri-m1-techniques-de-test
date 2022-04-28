@@ -1,6 +1,6 @@
 [![LeszczyTom](https://circleci.com/gh/LeszczyTom/ceri-m1-techniques-de-test.svg?style=svg)](https://app.circleci.com/pipelines/github/LeszczyTom/ceri-m1-techniques-de-test?filter=all)
 [![codecov](https://codecov.io/gh/LeszczyTom/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=IHHC7NL2HK)](https://codecov.io/gh/LeszczyTom/ceri-m1-techniques-de-test)
-[![checkstyle](https://gist.github.com/LeszczyTom/7c4b96672dae6e5b47f99194266ef5a9)](https://checkstyle.sourceforge.io/)
+[![checkstyle](https://gist.githubusercontent.com/LeszczyTom/7c4b96672dae6e5b47f99194266ef5a9/raw/badge.svg)](https://checkstyle.sourceforge.io/)
 # UCE Génie Logiciel Avancé : Techniques de tests
   
 | TP|

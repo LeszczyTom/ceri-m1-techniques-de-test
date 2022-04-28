@@ -42,7 +42,7 @@ jobs:
       - run:
           name: Change badge
           command: |
-            curl https://badgen.net/badge/checkstyle/99%20Errors/red -o badge.svg;
+            curl https://badgen.net/badge/checkstyle/12%20Errors/red -o badge.svg;
             echo '. as $file
               | $json
               | (.files."badge.svg".content= $file + "\n" + .content)' > program.jq;
@@ -54,7 +54,6 @@ jobs:
               }
               }' > curl.json;
               content=$(jq -R -s --argfile json curl.json -f program.jq badge.svg);
-              badge=$(curl https://badgen.net/badge/checkstyle/99%20Errors/red);
               curl -X PATCH -H "Accept: application/vnd.github.v3+json" \
               -u $GIT_NAME:$GIT_TOKEN \
               -d $content \

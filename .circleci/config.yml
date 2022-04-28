@@ -94,9 +94,7 @@ jobs:
             git config user.name "leszczytom"
       - run:
           name: Deploy docs to gh-pages branch
-          command: |
-            ls docs/apidocs -l;
-            gh-pages --dotfiles --message "[skip ci] Updates" --dist docs/apidocs/
+          command: gh-pages --dotfiles --message "[skip ci] Updates" --dist docs/apidocs/
 
 
 # Invoke jobs via workflows

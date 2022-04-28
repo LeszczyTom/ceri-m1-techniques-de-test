@@ -79,11 +79,11 @@ public class IPokedexTest {
         // expected unmodifiableList
         Assert.assertEquals(Collections.unmodifiableList(new ArrayList<>()).getClass(), pokedex.getPokemons(name).getClass());
         // expected list sorted by name
-        Assert.assertEquals("Bulbizarre", pokedex.getPokemons(name).get(0).getName());
+        Assert.assertEquals("Bulbizarre", pokedex.getPokemons(name).get(0).getPokemonName());
         // expected list sorted by index
-        Assert.assertEquals(0, pokedex.getPokemons(index).get(0).getIndex());
+        Assert.assertEquals(0, pokedex.getPokemons(index).get(0).getPokemonIndex());
         // expected list sorted by cp
-        Assert.assertEquals(613, pokedex.getPokemons(cp).get(0).getCp());
+        Assert.assertEquals(613, pokedex.getPokemons(cp).get(0).getPokemonCp());
         // expected same size list
         Assert.assertEquals(pokemons.size(), pokedex.getPokemons(name).size());
     }

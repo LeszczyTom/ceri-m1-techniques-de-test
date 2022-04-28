@@ -25,12 +25,12 @@ public class IPokemonTrainerFactoryTest {
         // expected PokemenTrainer
         Assert.assertEquals(pokemonTrainer.getClass(), pokemonTrainerFactory.createTrainer("Trainer", Team.VALOR, pokedexFactory).getClass());
         // expected name
-        Assert.assertEquals("Trainer", pokemonTrainerFactory.createTrainer("Trainer", Team.VALOR, pokedexFactory).getName());
+        Assert.assertEquals("Trainer", pokemonTrainerFactory.createTrainer("Trainer", Team.VALOR, pokedexFactory).getTrainerName());
         // expected team
-        Assert.assertEquals(Team.VALOR, pokemonTrainerFactory.createTrainer("Trainer", Team.VALOR, pokedexFactory).getTeam());
+        Assert.assertEquals(Team.VALOR, pokemonTrainerFactory.createTrainer("Trainer", Team.VALOR, pokedexFactory).getTrainerTeam());
         // expected pokedex
-        Assert.assertEquals(pokedex.getClass(), pokemonTrainerFactory.createTrainer("Trainer", Team.VALOR, pokedexFactory).getPokedex().getClass());
+        Assert.assertEquals(pokedex.getClass(), pokemonTrainerFactory.createTrainer("Trainer", Team.VALOR, pokedexFactory).getTrainerPokedex().getClass());
         // expected same size pokedex
-        Assert.assertEquals(pokedex.getPokemons().size(), pokemonTrainerFactory.createTrainer("Trainer", Team.VALOR, pokedexFactory).getPokedex().getPokemons().size());
+        Assert.assertEquals(pokedex.getPokemons().size(), pokemonTrainerFactory.createTrainer("Trainer", Team.VALOR, pokedexFactory).getTrainerPokedex().getPokemons().size());
     }
 }

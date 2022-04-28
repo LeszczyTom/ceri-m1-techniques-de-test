@@ -30,10 +30,10 @@ public class IPokemonMetadataProviderTest {
         Assert.assertThrows(PokedexException.class, () -> provider.getPokemonMetadata(-160));
         Assert.assertThrows(PokedexException.class, () -> provider.getPokemonMetadata(160));
         // expected 126 attack for Bulbizarre
-        Assert.assertEquals(bulbizarre.getAttack(), 126);
+        Assert.assertEquals(bulbizarre.getPokemonAttack(), 126);
         // expected 186 defense for Aquali
-        Assert.assertEquals(aquali.getDefense(), 186);
+        Assert.assertEquals(aquali.getPokemonDefense(), 186);
         // expected 260 stamina for Aquali
-        Assert.assertEquals(aquali.getStamina(), 260);
+        Assert.assertEquals(aquali.getPokemonStamina(), 260);
     }
 }

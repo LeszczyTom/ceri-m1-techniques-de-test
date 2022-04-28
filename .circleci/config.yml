@@ -42,7 +42,31 @@ jobs:
       - run:
           name: Change badge
           command: |
-            cat output/checkstyle-result.xml
+            errors=$(grep -o "severity=\"error\"" output/checkstyle-result.xml | wc -l);
+            if [ $errors -lt 1 ]
+              then
+                curl https://badgen.net/badge/checkstyle/0%20Errors/green -o badge.svg;
+              elif [ $errors -lt 20 ]
+                then
+                  curl https://badgen.net/badge/checkstyle/$errors%20Errors/yellow -o badge.svg;
+                else
+                  curl https://badgen.net/badge/checkstyle/$errors%20Errors/red -o badge.svg;
+            fi;
+            echo '. as $file
+              | $json
+              | (.files."badge.svg".content= $file + "\n" + .content)' > program.jq;
+            echo '{"description": "Badge checkstyle",
+              "files": {
+              "badge.svg": {
+              "content": ""
+              }
+              }
+              }' > curl.json;
+            jq -R -s --argfile json curl.json -f program.jq badge.svg > content.json;
+            curl -X PATCH -H "Accept: application/vnd.github.v3+json" \
+            -u $GIT_NAME:$GIT_TOKEN \
+            --data-binary "@content.json" \
+            https://api.github.com/gists/7c4b96672dae6e5b47f99194266ef5a9
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

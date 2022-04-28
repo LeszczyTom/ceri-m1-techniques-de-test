@@ -42,6 +42,7 @@ jobs:
       - run:
           name: Change badge
           command: |
+            ls -l;
             cat checkstyle-result.xml
 
 # Invoke jobs via workflows

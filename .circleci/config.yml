@@ -83,6 +83,9 @@ jobs:
       - checkout
       - attach_workspace:
           at: docs/
+      - add_ssh_keys:
+          fingerprints:
+            - "94:40:08:d7:1d:6e:c9:73:ed:96:02:e3:32:06:e7:89"
       - run:
           name: Install and configure dependencies
           command: |
@@ -92,8 +95,8 @@ jobs:
       - run:
           name: Deploy docs to gh-pages branch
           command: |
-            ls docs -l;
-            gh-pages --dist docs/
+            ls docs/apidocs -l;
+            gh-pages --dotfiles --message "[skip ci] Updates" --dist docs/apidocs/
 
 
 # Invoke jobs via workflows

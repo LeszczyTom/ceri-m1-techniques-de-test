@@ -91,7 +91,9 @@ jobs:
             git config user.name "leszczytom"
       - run:
           name: Deploy docs to gh-pages branch
-          command: gh-pages --dist output/site/apidocs
+          command: |
+            ls -l;
+            gh-pages --dist output/site/apidocs/
 
 
 # Invoke jobs via workflows

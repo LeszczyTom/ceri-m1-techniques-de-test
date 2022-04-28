@@ -41,7 +41,11 @@ jobs:
 
       - run:
           name: Change badge
-          command: echo $GIT_NAME
+          command: |
+            curl \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/gists/7c4b96672dae6e5b47f99194266ef5a9
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

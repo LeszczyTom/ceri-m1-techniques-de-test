@@ -53,16 +53,12 @@ jobs:
               }
               }
               }' > curl.json;
-              jq -R -s --argfile json curl.json -f program.jq badge.svg
-
-
-#badge=$(curl https://badgen.net/badge/checkstyle/99%20Errors/red);
-#curl -X PATCH -H "Accept: application/vnd.github.v3+json" \
-#-u $GIT_NAME:$GIT_TOKEN \
-#-d '{"description": "the description for this gist", "files": {"badge.svg": {"content": "'${badge}'" }}}' \
-#https://api.github.com/gists/7c4b96672dae6e5b47f99194266ef5a9
-
-
+              content=$(jq -R -s --argfile json curl.json -f program.jq badge.svg);
+              badge=$(curl https://badgen.net/badge/checkstyle/99%20Errors/red);
+              curl -X PATCH -H "Accept: application/vnd.github.v3+json" \
+              -u $GIT_NAME:$GIT_TOKEN \
+              -d $content \
+              https://api.github.com/gists/7c4b96672dae6e5b47f99194266ef5a9
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

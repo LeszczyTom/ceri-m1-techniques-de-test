@@ -42,8 +42,9 @@ jobs:
       - run:
           name: Change badge
           command: |
-            curl \
-            -H "Accept: application/vnd.github.v3+json" \
+            curl -X PATCH -H "Accept: application/vnd.github.v3+json" \
+            -u $GIT_NAME:$GITHUB_TOKEN \
+            -d "{\"description\": \"the description for this gist\", "files\": {\"badge.svg\": {\"content\": "test"}}}"\
             https://api.github.com/gists/7c4b96672dae6e5b47f99194266ef5a9
 
 

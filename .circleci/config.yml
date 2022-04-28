@@ -45,7 +45,7 @@ jobs:
             curl https://badgen.net/badge/checkstyle/99%20Errors/red -o badge.svg;
             echo '. as $file
               | $json
-              | (.files.badge.svg.content= $file + "\n" + .content)$badge' > program.jq;
+              | (.files."badge.svg".content= $file + "\n" + .content)' > program.jq;
             echo '{"description": "Badge checkstyle",
               "files": {
               "badge.svg": {

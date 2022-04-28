@@ -45,7 +45,7 @@ jobs:
             errors=$(grep -o "severity=\"error\"" output/checkstyle-result.xml | wc -l);
             if [ $errors -lt 1 ]
               then
-                curl https://badgen.net/badge/checkstyle/$errors%20Errors/green -o badge.svg;
+                curl https://badgen.net/badge/checkstyle/0%20Errors/green -o badge.svg;
               elif [ $errors -lt 20 ]
                 then
                   curl https://badgen.net/badge/checkstyle/$errors%20Errors/yellow -o badge.svg;

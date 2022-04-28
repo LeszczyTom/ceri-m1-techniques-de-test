@@ -52,7 +52,7 @@ jobs:
               "content": ""
               }
               }
-              }' > curls.jj;
+              }' > curls.json;
               jq -R -s --argfile json curl.json -f program.jq badge.svg
 
 

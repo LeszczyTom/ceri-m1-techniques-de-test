@@ -42,7 +42,9 @@ jobs:
       - run:
           name: Change badge
           command: |
-            errors=$(grep -o "severity=\"error\"" output/checkstyle-result.xml | wc -l);
+            ls;
+            ls output;
+#errors=$(grep -o "severity=\"error\"" output/checkstyle-result.xml | wc -l);
 #if [ $errors -lt 1 ]
 #  then
 #    curl https://badgen.net/badge/checkstyle/0%20Errors/green -o badge.svg;

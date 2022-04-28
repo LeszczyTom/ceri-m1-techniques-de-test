@@ -2,6 +2,10 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+orbs:
+  node: circleci/node@4.3
+  gh: circleci/github-cli@1.0
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -38,12 +42,10 @@ jobs:
       - run:
           name: Change badge
           commmand: |
-            if [[ true ]]; then
-              curl -X PATCH -H "Accept: application/vnd.github.v3+json" \
-                -u LeszczyTom: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 \
-                -d "{\"description\": \"the description for this gist\", "files\": {\"badge.svg\": {\"content\": "test"}}}"\
-                https://api.github.com/gists/7c4b96672dae6e5b47f99194266ef5a9
-            fi
+            curl \
+            -H "Accept: application/vnd.github.v3+json" \
+            -u GIT_NAME/GITHUB_TOKEN \
+            https://api.github.com/gists/7c4b96672dae6e5b47f99194266ef5a9
 
 #curl https://badgen.net/badge/checkstyle/99%20Errors/red
 

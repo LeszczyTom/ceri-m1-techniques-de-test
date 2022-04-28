@@ -82,7 +82,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: docs/_build
+          at: docs/
       - run:
           name: Install and configure dependencies
           command: |
@@ -92,8 +92,8 @@ jobs:
       - run:
           name: Deploy docs to gh-pages branch
           command: |
-            ls -l;
-            gh-pages --dist output/site/apidocs/
+            ls docs -l;
+            gh-pages --dist docs/
 
 
 # Invoke jobs via workflows

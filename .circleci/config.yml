@@ -37,10 +37,10 @@ jobs:
 
       - run:
           name: Change badge
-          commmand:  curl -X PATCH \
-          -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/gists/7c4b96672dae6e5b47f99194266ef5a9 -u LeszczyTom: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 \
-          -d '{"description": "the description for this gist", "files": {"badge.svg": {"content": curl https://badgen.net/badge/checkstyle/99%20Errors/red}}}'
+          commmand: |
+            curl -X PATCH  -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/gists/7c4b96672dae6e5b47f99194266ef5a9 -u LeszczyTom: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 \
+            -d '{"description": "the description for this gist", "files": {"badge.svg": {"content": curl https://badgen.net/badge/checkstyle/99%20Errors/red}}}'
 
 
 # Invoke jobs via workflows

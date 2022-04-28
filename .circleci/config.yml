@@ -42,7 +42,7 @@ jobs:
       - run:
           name: Change badge
           command: |
-            grep -o "severity=\"error\"" output/checkstyle-result.xml | wc -l
+            grep -o "severity=\"error\"" output/checkstyle-result.xml | wc -l || true
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

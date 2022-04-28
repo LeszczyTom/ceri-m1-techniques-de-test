@@ -9,7 +9,7 @@
 |✔ [(Dés)intégration continue](TPs/TP2.md)|
 |✔ [Pokéunit](TPs/TP3.md)|
 |✔ [100% IV](TPs/TP4.md)|
-|[Bulbapedia](TPs/TP5.md)|
+|✔ [Bulbapedia](TPs/TP5.md)|
 |[Ils sont de retour pour vous jouer un mauvais tour](TPs/TP6.md)|
 
 Leszczynski Tom M1ILSEN GR1

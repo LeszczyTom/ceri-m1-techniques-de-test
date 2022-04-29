@@ -39,5 +39,9 @@ public class IPokemonFactoryTest {
         Assert.assertEquals(613, pokemonFactory.createPokemon(0, 613, 64, 4000, 4).getPokemonCp());
         // expected index 133 for aquali
         Assert.assertEquals(133, pokemonFactory.createPokemon(133, 2729, 202, 5000, 4).getPokemonIndex());
+        // expected 56.0 iv for bulbizarre
+        Assert.assertEquals(56.0, pokemonFactory.createPokemon(0, 613, 64, 4000, 4).getPokemonIv(), 0.0);
+        // expected null
+        Assert.assertNull(pokemonFactory.createPokemon(600, 613, 64, 4000, 4));
     }
 }

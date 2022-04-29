@@ -105,4 +105,14 @@ public class IPokedexTest {
         // expected same size list
         Assert.assertEquals(pokemons.size(), pokedex.getPokemons(name).size());
     }
+
+    @Test
+    public void sizeTest(){
+        if(pokedex.getClass() == Mockito.mock(IPokedex.class).getClass()) {
+            Mockito.doReturn(pokemons.size()).when(pokedex).size();
+        }
+
+        // expected size
+        Assert.assertEquals(2, pokedex.size());
+    }
 }

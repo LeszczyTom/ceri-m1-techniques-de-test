@@ -47,11 +47,11 @@ public class Pokedex implements IPokedex {
 
     @Override
     public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
-        return null;
+        return new PokemonFactory().createPokemon(index, cp, hp, dust, candy);
     }
 
     @Override
     public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
-        return null;
+        return new PokemonMetadataProvider().getPokemonMetadata(index);
     }
 }

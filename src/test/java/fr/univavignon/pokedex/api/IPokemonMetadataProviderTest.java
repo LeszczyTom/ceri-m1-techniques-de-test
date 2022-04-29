@@ -14,7 +14,7 @@ public class IPokemonMetadataProviderTest {
     public IPokemonMetadataProviderTest() {
         provider = Mockito.mock(IPokemonMetadataProvider.class);
         bulbizarre = new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
-        aquali = new PokemonMetadata(133, "Aquali", 186, 186, 260);
+        aquali = new PokemonMetadata(133, "Aquali", 186, 168, 260);
     }
 
     public void implementationOfIPokemonMetadataProvider(PokemonMetadataProvider provider) {
@@ -33,10 +33,10 @@ public class IPokemonMetadataProviderTest {
         Assert.assertThrows(PokedexException.class, () -> provider.getPokemonMetadata(-160));
         Assert.assertThrows(PokedexException.class, () -> provider.getPokemonMetadata(160));
         // expected 126 attack for Bulbizarre
-        Assert.assertEquals(bulbizarre.getPokemonAttack(), 126);
-        // expected 186 defense for Aquali
-        Assert.assertEquals(aquali.getPokemonDefense(), 186);
+        Assert.assertEquals(126, provider.getPokemonMetadata(0).getPokemonAttack());
+        // expected 168 defense for Aquali
+        Assert.assertEquals(168, provider.getPokemonMetadata(133).getPokemonDefense());
         // expected 260 stamina for Aquali
-        Assert.assertEquals(aquali.getPokemonStamina(), 260);
+        Assert.assertEquals(260, provider.getPokemonMetadata(133).getPokemonStamina());
     }
 }

@@ -6,14 +6,54 @@ import fr.univavignon.pokedex.api.PokemonMetadata;
 
 import java.util.Arrays;
 
+/**
+ * Factory for creating Pokemon.
+ */
 public class PokemonFactory implements IPokemonFactory {
+
+    /**
+     * IV of Bulbizarre.
+     */
+    public static final double BULBIZARRE_IV = 56.0;
+
+    /**
+     * IV of Aquali.
+     */
+    public static final double AQUALI_IV = 100.0;
+
+    /**
+     * IV of other pokemons.
+     */
+    public static final double OTHERPOKEMON_IV = 0.0;
+
+    /**
+     * Index of Aquali.
+     */
+    public static final int AQUALI_INDEX = 133;
+
+    /**
+     * Creates a new Pokemon.
+     * @param index Pokemon index.
+     * @param cp Pokemon CP.
+     * @param hp Pokemon HP.
+     * @param dust Required dust for upgrading pokemon.
+     * @param candy Required candy for upgrading pokemon.
+     * @return Pokemon.
+     */
     @Override
-    public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
+    public Pokemon createPokemon(final int index,
+                                 final int cp,
+                                 final int hp,
+                                 final int dust,
+                                 final int candy) {
         PokemonMetadata pokemonMetadata;
-        int attack, defense, stamina;
+        int attack;
+        int defense;
+        int stamina;
         String name;
         try {
-            pokemonMetadata = new PokemonMetadataProvider().getPokemonMetadata(index);
+            pokemonMetadata =
+                    new PokemonMetadataProvider().getPokemonMetadata(index);
             attack = pokemonMetadata.getPokemonAttack();
             defense = pokemonMetadata.getPokemonDefense();
             stamina = pokemonMetadata.getPokemonStamina();
@@ -23,12 +63,22 @@ public class PokemonFactory implements IPokemonFactory {
             return null;
         }
 
-        return new Pokemon(Arrays.asList(attack,defense,stamina,cp,hp),index, name, dust, candy, getIV(index));
+        return new Pokemon(Arrays.asList(attack, defense, stamina, cp, hp),
+                index, name, dust, candy, getIV(index));
     }
 
-    public double getIV(int index) {
-        if(index == 0) return 56.0;
-        if(index == 133) return 100.0;
-        return 0.0;
+    /**
+     * Gets the IV of a pokemon.
+     * @param index Pokemon index.
+     * @return IV.
+     */
+    public double getIV(final int index) {
+        if (index == 0) {
+            return BULBIZARRE_IV;
+        }
+        if (index == AQUALI_INDEX) {
+            return AQUALI_IV;
+        }
+        return OTHERPOKEMON_IV;
     }
 }

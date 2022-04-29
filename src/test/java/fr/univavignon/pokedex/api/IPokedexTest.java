@@ -3,6 +3,8 @@ package fr.univavignon.pokedex.api;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
+import tl.Pokedex;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -23,9 +25,17 @@ public class IPokedexTest {
         pokemons.add(aquali);
     }
 
+    public void implementationOfPokedex(Pokedex pokedex) {
+        this.pokedex = pokedex;
+        for(Pokemon pokemon : pokemons) {
+            pokedex.addPokemon(pokemon);
+        }
+    }
+
     @Test
     public void addPokemonTest () {
-        Mockito.doReturn(pokemons.size() + 1).when(pokedex).addPokemon(Mockito.any(Pokemon.class));
+        if(pokedex.getClass() == Mockito.mock(IPokedex.class).getClass())
+            Mockito.doReturn(pokemons.size() + 1).when(pokedex).addPokemon(Mockito.any(Pokemon.class));
 
         // expected size + 1
         Assert.assertEquals(3, pokedex.addPokemon(new Pokemon(new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0)), 0, "", 0, 0, 0.0)));
@@ -33,23 +43,29 @@ public class IPokedexTest {
 
     @Test
     public void getPokemonTest () throws PokedexException {
-        Mockito.doReturn(bulbizarre).when(pokedex).getPokemon(0);
-        Mockito.doReturn(aquali).when(pokedex).getPokemon(133);
-        Mockito.doThrow(new PokedexException("Index is not valid.")).when(pokedex).getPokemon(Mockito.intThat(i -> i < 0 || i > 150));
+        if(pokedex.getClass() == Mockito.mock(IPokedex.class).getClass()) {
+            Mockito.doReturn(bulbizarre).when(pokedex).getPokemon(0);
+            Mockito.doReturn(aquali).when(pokedex).getPokemon(1);
+            Mockito.doThrow(new PokedexException("Index is not valid.")).when(pokedex).getPokemon(Mockito.intThat(i -> i < 0 || i > 1));
+        }
 
         // expected bulbizarre
         Assert.assertEquals(bulbizarre, pokedex.getPokemon(0));
         // expected aquali
-        Assert.assertEquals(aquali, pokedex.getPokemon(133));
+        Assert.assertEquals(aquali, pokedex.getPokemon(1));
         // expected exception
         Assert.assertThrows(PokedexException.class, () -> pokedex.getPokemon(999));
         Assert.assertThrows(PokedexException.class, () -> pokedex.getPokemon(-999));
+        Assert.assertThrows(PokedexException.class, () -> pokedex.getPokemon(2));
     }
 
     @Test
     public void getPokemonsTest () {
         List<Pokemon> unmodifiablePokemonList = Collections.unmodifiableList(pokemons);
-        Mockito.doReturn(unmodifiablePokemonList).when(pokedex).getPokemons();
+
+        if(pokedex.getClass() == Mockito.mock(IPokedex.class).getClass()) {
+            Mockito.doReturn(unmodifiablePokemonList).when(pokedex).getPokemons();
+        }
 
         // expected unmodifiableList
         Assert.assertEquals(unmodifiablePokemonList.getClass(), pokedex.getPokemons().getClass());
@@ -68,19 +84,20 @@ public class IPokedexTest {
         List<Pokemon> sortedPokemonListByName = new ArrayList<>(pokemons);
         sortedPokemonListByName.sort(name);
         List<Pokemon> sortedPokemonListByIndex = new ArrayList<>(pokemons);
-        sortedPokemonListByName.sort(index);
+        sortedPokemonListByIndex.sort(index);
         List<Pokemon> sortedPokemonListByCp = new ArrayList<>(pokemons);
-        sortedPokemonListByName.sort(cp);
+        sortedPokemonListByCp.sort(cp);
 
-        Mockito.doReturn(Collections.unmodifiableList(sortedPokemonListByName)).when(pokedex).getPokemons(name);
-        Mockito.doReturn(Collections.unmodifiableList(sortedPokemonListByIndex)).when(pokedex).getPokemons(index);
-        Mockito.doReturn(Collections.unmodifiableList(sortedPokemonListByCp)).when(pokedex).getPokemons(cp);
-
+        if(pokedex.getClass() == Mockito.mock(IPokedex.class).getClass()) {
+            Mockito.doReturn(Collections.unmodifiableList(sortedPokemonListByName)).when(pokedex).getPokemons(name);
+            Mockito.doReturn(Collections.unmodifiableList(sortedPokemonListByIndex)).when(pokedex).getPokemons(index);
+            Mockito.doReturn(Collections.unmodifiableList(sortedPokemonListByCp)).when(pokedex).getPokemons(cp);
+        }
 
         // expected unmodifiableList
         Assert.assertEquals(Collections.unmodifiableList(new ArrayList<>()).getClass(), pokedex.getPokemons(name).getClass());
         // expected list sorted by name
-        Assert.assertEquals("Bulbizarre", pokedex.getPokemons(name).get(0).getPokemonName());
+        Assert.assertEquals("Aquali", pokedex.getPokemons(name).get(0).getPokemonName());
         // expected list sorted by index
         Assert.assertEquals(0, pokedex.getPokemons(index).get(0).getPokemonIndex());
         // expected list sorted by cp

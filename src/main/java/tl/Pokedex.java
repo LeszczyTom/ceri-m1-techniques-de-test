@@ -4,12 +4,8 @@ import fr.univavignon.pokedex.api.IPokedex;
 import fr.univavignon.pokedex.api.PokedexException;
 import fr.univavignon.pokedex.api.Pokemon;
 import fr.univavignon.pokedex.api.PokemonMetadata;
-import org.apache.commons.collections4.list.UnmodifiableList;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.Collections;
+import java.util.*;
 
 public class Pokedex implements IPokedex {
 
@@ -23,7 +19,7 @@ public class Pokedex implements IPokedex {
     @Override
     public int addPokemon(Pokemon pokemon) {
         pokemons.add(pokemon);
-        return pokemons.size() - 1;
+        return pokemons.size();
     }
 
     @Override
@@ -39,12 +35,14 @@ public class Pokedex implements IPokedex {
 
     @Override
     public List<Pokemon> getPokemons() {
-        return new UnmodifiableList<>(pokemons);
+        return Collections.unmodifiableList(pokemons);
     }
 
     @Override
     public List<Pokemon> getPokemons(Comparator<Pokemon> order) {
-        return null;
+        List<Pokemon> tmp = new ArrayList<>(pokemons);
+        tmp.sort(order);
+        return Collections.unmodifiableList(tmp);
     }
 
     @Override

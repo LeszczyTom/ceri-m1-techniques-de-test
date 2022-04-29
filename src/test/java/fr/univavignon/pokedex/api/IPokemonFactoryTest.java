@@ -19,7 +19,7 @@ public class IPokemonFactoryTest {
         pokemonFactory = Mockito.mock(IPokemonFactory.class);
     }
 
-    public void implementationOfIPokemonFactory(PokemonFactory pokemonFactory) {
+    public void implementationOfIPokemonFactory(IPokemonFactory pokemonFactory) {
         this.pokemonFactory = pokemonFactory;
     }
 

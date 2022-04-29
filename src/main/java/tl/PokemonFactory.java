@@ -24,7 +24,7 @@ public class PokemonFactory implements IPokemonFactory {
     /**
      * IV of other pokemons.
      */
-    public static final double OTHERPOKEMON_IV = 0.0;
+    public static final double OTHERPOKEMON_IV = 1.0;
 
     /**
      * Index of Aquali.

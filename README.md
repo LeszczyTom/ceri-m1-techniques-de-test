@@ -14,6 +14,7 @@ Leszczynski Tom M1ILSEN GR1
 |✔ [Bulbapedia](TPs/TP5.md)|
 |✔ [Ils sont de retour pour vous jouer un mauvais tour](TPs/TP6.md)|
 
+La [Javadoc](https://www.leszczytom.fr/ceri-m1-techniques-de-test/fr/univavignon/pokedex/api/package-summary.html)
 ## TP6
 
 [LE COMMIT](https://github.com/LeszczyTom/ceri-m1-techniques-de-test/commit/65350314249b5fdf24b78b91677d0327ed5702bc)

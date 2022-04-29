@@ -3,6 +3,7 @@ package fr.univavignon.pokedex.api;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
+import tl.PokemonFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,22 +18,26 @@ public class IPokemonFactoryTest {
         pokemonFactory = Mockito.mock(IPokemonFactory.class);
     }
 
+    public void implementationOfIPokemonFactory(PokemonFactory pokemonFactory) {
+        this.pokemonFactory = pokemonFactory;
+    }
+
     @Test
     public void  createPokemonTest () {
-        Mockito.when(pokemonFactory.createPokemon(133,2729, 202, 5000, 4)).thenReturn(aquali);
-        Mockito.when(pokemonFactory.createPokemon(0, 613, 64, 4000, 4)).thenReturn(bulbizarre);
+        if(pokemonFactory.getClass() == Mockito.mock(IPokemonFactory.class).getClass()) {
+            Mockito.when(pokemonFactory.createPokemon(133, 2729, 202, 5000, 4)).thenReturn(aquali);
+            Mockito.when(pokemonFactory.createPokemon(0, 613, 64, 4000, 4)).thenReturn(bulbizarre);
+        }
 
-        // expected aquali
-        Assert.assertEquals(aquali, pokemonFactory.createPokemon(133,2729, 202, 5000, 4));
-        // expected bulbizarre
-        Assert.assertEquals(bulbizarre, pokemonFactory.createPokemon(0, 613, 64, 4000, 4));
         // expected 64 hp for bulbizarre
-        Assert.assertEquals(bulbizarre.getPokemonHp(), 64);
+        Assert.assertEquals(64, pokemonFactory.createPokemon(0, 613, 64, 4000, 4).getPokemonHp());
         // expected 5000 dust for aquali
-        Assert.assertEquals(aquali.getPokemonDust(), 5000);
+        Assert.assertEquals(5000, pokemonFactory.createPokemon(133, 2729, 202, 5000, 4).getPokemonDust());
         // expected 4 candy for bulbizarre
-        Assert.assertEquals(bulbizarre.getPokemonCandy(), 4);
-        //expected 100.0 iv for aquali
-        Assert.assertEquals(aquali.getPokemonIv(), 100.0, 0.0);
+        Assert.assertEquals(4, pokemonFactory.createPokemon(0, 613, 64, 4000, 4).getPokemonCandy());
+        // expected 613 cp for bulbizarre
+        Assert.assertEquals(613, pokemonFactory.createPokemon(0, 613, 64, 4000, 4).getPokemonCp());
+        // expected index 133 for aquali
+        Assert.assertEquals(133, pokemonFactory.createPokemon(133, 2729, 202, 5000, 4).getPokemonIndex());
     }
 }

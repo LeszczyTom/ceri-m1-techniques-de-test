@@ -3,6 +3,8 @@
 [![checkstyle](https://gist.githubusercontent.com/LeszczyTom/7c4b96672dae6e5b47f99194266ef5a9/raw/badge.svg)](https://checkstyle.sourceforge.io/)
 # UCE Génie Logiciel Avancé : Techniques de tests
   
+Leszczynski Tom M1ILSEN GR1
+
 | TP|
 | -----|
 |✔ [Fork them all !](TPs/TP1.md)|
@@ -10,6 +12,14 @@
 |✔ [Pokéunit](TPs/TP3.md)|
 |✔ [100% IV](TPs/TP4.md)|
 |✔ [Bulbapedia](TPs/TP5.md)|
-|[Ils sont de retour pour vous jouer un mauvais tour](TPs/TP6.md)|
+|✔ [Ils sont de retour pour vous jouer un mauvais tour](TPs/TP6.md)|
 
-Leszczynski Tom M1ILSEN GR1
+## TP6
+
+En ajoutant RocketPokemonFactory.java, checkstyle trouve 24 erreurs.
+
+RocketPokemonFactory.java ne passe pas les tests.
+
+Les IV sont mal gérés.
+
+Des pokémons sont créés même quand l'id est supérieur à 150 ou inférieure à 0.
